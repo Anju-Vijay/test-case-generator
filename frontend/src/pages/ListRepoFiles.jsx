@@ -1,19 +1,28 @@
 import {useParams,useNavigate} from 'react-router-dom'
 import {useState,useEffect} from 'react'
+import axios from 'axios'
 
 const ListRepoFiles = () => {
     const {owner, repo}=useParams()
     const navigate=useNavigate()
+    const backendUrl= import.meta.env.VITE_BACKEND_URL
 
     const [files,setFiles]=useState([])
     const [checkboxSelection,setCheckboxSelection]=useState([])
+
+    const getFiles=async()=>{
+                 try {
+                    const response=await axios.get(`${backendUrl}/api/github/files/${owner}/${repo}`)
+                    console.log(response.data);
+                    setFiles(response.data)
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+console.log(files);
+
     useEffect(()=>{
-        const dummyFiles=[
-            {path:"src/App.js"},
-            {path:"src/index.js"},
-            {path:"src/components/Button.jsx.js"}
-        ]
-        setFiles(dummyFiles)
+        getFiles()   
     },[owner,repo])
     
     const storeCheckboxSelection=(filePath)=>{
@@ -22,7 +31,12 @@ const ListRepoFiles = () => {
         [...prev,filePath])
     }
     const onSubmitHandler=()=>{
-        navigate('/generate-test-case',{state: {owner,repo,checkboxSelection}})
+        try {
+            navigate('/generate-test-case',{state: {owner,repo,checkboxSelection}})
+        } catch (error) {
+            console.log(error)
+        }
+        
     }
 return (
     <div className=' w-full  flex  flex-col gap-3 justify-center items-center h-screen '>

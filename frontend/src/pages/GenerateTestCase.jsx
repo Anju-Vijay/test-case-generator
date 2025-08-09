@@ -1,10 +1,31 @@
 import React from 'react'
+import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
+import axios from 'axios'
 
 const GenerateTestCase = () => {
+
     const {state}=useLocation()
+    const backendUrl= import.meta.env.VITE_BACKEND_URL
     const {owner, repo, checkboxSelection}= state || {}
-    console.log(state)
+    const generateTestCases=async()=>{
+        try {
+            const response=await axios.post(backendUrl+'/api/github/content',
+            {
+                owner,
+                repo,
+                selectedFiles: checkboxSelection
+            })
+            console.log(response.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    useEffect(()=>{
+        generateTestCases()
+
+    },[])
+    
     return (
     <div className=' w-full  flex  flex-col gap-3 justify-center items-center h-screen '>
         <div className='w-3/4 h-full mt-5 mb-10 bg-lime-300 opacity-60 rounded p-4 flex flex-col overflow-auto '>
