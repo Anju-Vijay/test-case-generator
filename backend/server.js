@@ -2,6 +2,7 @@ import express from "express"
 import cors from "cors"
 import "dotenv/config"
 import githubRoutes from "./routes/githubRoutes.js";
+import aiRoutes from "./routes/aiRoutes.js";
 
 //config
 const app=express()
@@ -13,6 +14,7 @@ app.use(cors())
 
 //API endpoints
 app.use('/api/github', githubRoutes)
+app.use('/api/ai',aiRoutes)
 
 
 app.get('/', (req,res)=>{

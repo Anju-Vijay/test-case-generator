@@ -2,6 +2,7 @@ import axios from "axios"
 
 const Git_PAT=process.env.GIT_TOKEN
 
+//fetch repo files from github
 const fetchRepoFiles=async(owner,repo,path="")=>{
     try {
 
@@ -31,6 +32,8 @@ const fetchRepoFiles=async(owner,repo,path="")=>{
     }
     
 }
+
+//fetch content of a file from github
 const fetchContent=async(owner, repo, selectedFiles)=>{
 
         const contentList=[]

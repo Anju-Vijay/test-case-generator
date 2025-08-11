@@ -12,13 +12,14 @@ const getRepoFiles=async(req,res)=>{
         res.json({success:false , message: "Failed to fetch files"})  
     } 
 }
+
+//get content of selected files
 const getFileContent=async(req,res)=>{
    const {owner,repo,selectedFiles}=req.body
    try {
         const contents=await fetchContent(owner, repo, selectedFiles)
-        const geminiResponse=await getSummaryFromGemini(contents)
-        res.json({ testCases: geminiResponse });
-        console.log("GeminiResponse:",geminiResponse);     
+        const listItems=await getSummaryFromGemini(contents)
+        res.json({ items: listItems });    
 
    } catch (error) {
         console.log(error.message)

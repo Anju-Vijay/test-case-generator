@@ -4,6 +4,7 @@ import { useState } from 'react'
 const Home = () => {
     const navigate=useNavigate()
     const [repoInput,setRepoInput]=useState('')
+    
     const onSubmitHandler=()=>{
         const[owner, repo]=repoInput.replace('https://github.com/', '').split('/')
         if(!owner || !repo){
