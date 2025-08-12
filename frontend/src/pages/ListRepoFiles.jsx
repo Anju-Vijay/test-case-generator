@@ -44,13 +44,13 @@ const ListRepoFiles = () => {
     
     
 return (
-    <div className=' w-full  flex  flex-col gap-3 justify-center items-center h-screen '>
-        <div className='w-3/4 h-3/4 bg-lime-300 opacity-60 rounded p-4 flex flex-col overflow-auto '>
-            <h1 className='p-3 border-b-4 border-lime-200'><span className='font-bold text-xl'>Files in Git Repo:</span> {owner}/{repo}</h1>
+    <div className='w-full  flex  flex-col justify-center items-center min-h-screen '>
+        <div className='w-3/4 h-3/4 mt-4 mb-4 bg-lime-300 opacity-60 rounded p-4 flex flex-col overflow-auto text-sm sm:text-base md:text-lg max-h-[70vh] sm:max-h-[80vh]'>
+            <h1 className='p-3 border-b-4 border-lime-200'><span className='font-bold text-base sm:text-xl '>Files in Git Repo:</span> {owner}/{repo}</h1>
             <div className='m-4'>
                 <ul className='mt-3'>
                     {files.map((file)=>(
-                    <li key={file.path} className='w-full border border-lime-400 font-semibold flex gap-2 p-2 mb-2 bg-lime-200 rounded cursor-pointer'>
+                    <li key={file.path} className='w-full border border-lime-400 font-semibold flex gap-2 p-2 mb-2 bg-lime-200 rounded cursor-pointer text-xs sm:text-sm md:text-base'>
                         <input onChange={()=>storeCheckboxSelection(file.path)} type='checkbox' checked={checkboxSelection.includes(file.path)}/>
                         {file.path}
                     </li>

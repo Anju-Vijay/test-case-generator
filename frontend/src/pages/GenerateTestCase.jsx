@@ -53,9 +53,9 @@ const GenerateTestCase = () => {
     },[])
     
     return (
-    <div className=' w-full flex flex-col md:flex-row items-center md:items-start min-h-screen p-5 gap-5 '>
+    <div className=' w-full flex flex-col md:flex-row items-center md:items-start min-h-screen p-5 gap-5 text-sm sm:text-base md:text-lg '>
         {/* Test Cases Column */}
-        <div className='w-3/4 sm:1/2 h-full bg-lime-300 opacity-60 rounded flex flex-col'>
+        <div className='w-3/4 sm:1/2 sm:h-[150vh] bg-lime-300 opacity-60 rounded flex flex-col max-h-[70vh] sm:max-h-[80vh]'>
             <h1 className='p-3 border-b-4 border-lime-200'><span className='font-bold text-xl'>Test Cases:</span>{' '}{owner}/{repo}</h1>
             {testCaseSummary?.map((item, index) => (
             <div key={index} className='w-full h-full p-3 flex flex-col gap-3 items-center  '>
@@ -71,16 +71,16 @@ const GenerateTestCase = () => {
             ))}
         </div>
           {/* Test Code */}
-        <div className='w-3/4 sm:1/2  h-full   bg-lime-200 opacity-60 rounded flex flex-col  overflow-auto '>
+        <div className='w-3/4 sm:1/2  h-[150vh] md:h-full bg-lime-200 opacity-60 rounded  flex flex-col overflow-x-auto  max-h-[70vh] sm:max-h-[80vh] text-sm sm:text-base md:text-lg '>
             <h1 className='p-3 border-b-4 border-lime-300 font-bold text-xl'>Test Code:</h1>
             {testCode?
             <div className='w-full h-full p-3 flex flex-col gap-3  '>
-                <pre className="bg-lime-300 p-2 rounded overflow-auto">
+                <pre className="w-full bg-lime-300 p-2 rounded  whitespace-pre-wrap break-words">
                     <code>{testCode}</code>
                 </pre>
                 <Button onClick={()=>handleCopy(testCode)} title={copied ? "✅ Copied!" : "📋 Copy"}/>
             </div>
-            : <p className='font-semibold text-sm text-center m-auto'>Please select a summary to display its test code</p>}
+            : <p className='font-semibold text-sm text-center m-auto p-5'>Please select a summary to display its test code</p>}
              
         </div>
         
